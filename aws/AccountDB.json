@@ -1,0 +1,22 @@
+[
+  {
+    "username": "bich",
+    "password": "123456",
+    "fullname": "Triệu Ngọc Bích",
+    "sex": "Nữ",
+    "email": "bich@gmail.com",
+    "phone": "0123456789",
+    "address": "62/2 Điện Biên Phủ Phường 17 Quận Bình Thạnh",
+    "type": 0
+  },
+  {
+    "username": "nghia",
+    "password": "123456",
+    "fullname": "Đỗ Trọng Nghĩa",
+    "sex": "Nam",
+    "email": "nghia@gmail.com",
+    "phone": "0123456789",
+    "address": "Đường số 8 quận Gò Vấp",
+    "type": 1
+  }
+]

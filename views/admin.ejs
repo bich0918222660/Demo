@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<meta charset="UTF-8">
+	<title>Admin Page</title>
+	<meta name="author" content="Trieu Ngoc Bich">
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+
+	<!-- jQuery Validation -->
+	<script src="js/jquery.validate.min.js"></script>
+
+	<!-- jQuery UI -->
+	<link href="css/jquery-ui.min.css" rel="stylesheet" />
+	<script src="js/jquery-ui.min.js"></script>
+
+	<!-- Bootstrap -->
+    <link href="css/bootstrap3.min.css" rel="stylesheet" />
+    <link href="css/bootstrap4.min.css" rel="stylesheet" />
+    
+    <script src="js/bootstrap3.min.js"></script>
+    <script src="js/bootstrap4.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+	<style>
+    body {
+		font-size: 16px;
+	}
+
+    /* header */
+	.h-info {
+		background-color: #ffe6f2;
+		color: black;
+		width: 100%;
+		height: 140px;
+        box-shadow: 0px 0px 5px #ccc;
+	}
+	
+	.h-left {
+		width: 40%;
+		font-size: 35px;
+		font-weight: bold;
+		float: left;
+		margin-top: 15px;
+	}
+	
+	.h-logo {
+		height: 80px;
+		width: 65%;
+        margin-top: 10px;
+        margin-left: 50px;
+	}
+	
+	.h-right {
+		width: 60%;
+		float: right;
+		margin-top: 20px;
+	}
+	
+	.h-icon {
+		width: 20px;
+		height: 20px;
+		color: #ff33cc;
+		margin-left: 10px;		
+	}
+	
+
+	.affix {
+        top: 20px;
+        width: 15%;
+        z-index: 9999 !important;
+    }
+    .carousel-inner img {
+        width: 100%;
+        height: 250px;
+    }
+
+    nav {
+        background-color: #262626;
+        margin-top: -20px;
+        padding-top: 20px;
+    }
+    nav a, .dropdown-btn {
+        margin-left: 12px;
+        padding: 12px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        color: #ccffff;
+        display: block;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        font-weight: bold;
+    }
+    
+    /* On mouse-over */
+    nav a:hover, .dropdown-btn:hover {
+        width: 100%;
+        text-decoration: none;
+        color: black;
+        background-color: darkturquoise;
+    }
+    .active {
+        background-color: darkturquoise;
+        color: white;
+    }
+    .dropdown-container {
+        display: none;
+        background-color: #262626;
+        padding-right: 12px;
+        width: 100%;
+        
+    }
+    .dropdown-container a {
+        padding-left: 30px;
+    }
+    .dropdown-container a:hover {
+        background-color: #ffe6f2;
+        color: #ff33cc;
+    }
+    
+
+    /* Overview */
+    .overview {
+        padding-bottom: 10px;
+        margin-left: -10px;
+    }
+    .overview-label {
+        width: 28%;
+        margin: 30px;
+        padding: 35px;
+        border-radius: 12px;
+    }
+    .label-content {
+        color:white;
+        font-size: 18px;
+    }
+    .label-content::first-line {
+        font-size: 25px;
+    }
+    .overview-label-icon {
+        height: 50px;
+        width: 80px;
+    }
+    span .overview-label-icon {
+        height: 60px;
+        width: 60px;
+    }
+
+    /* table */
+    .table {
+        width: 92%;
+        margin-left: 3%;
+        margin-bottom: 4%;
+    }
+    .table-title {
+        font-weight: bold;
+        color: #e4606d;
+        margin: auto;
+        padding: 1%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        font-size: 30px;
+        border-top: 1px solid #e4606d;
+        border-bottom: 1px solid #e4606d;
+    }
+
+    /* footer */
+	footer {
+		background-color: #ffe6f2;
+		color: black;
+		padding: 2%;
+        box-shadow: 0px 0px 1px #ccc;
+	}
+	</style>
+</HEAD>
+<BODY>
+        <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+
+        <% include admin_layout/header %>
+        <br>
+              
+        <div class="row">
+            <% include admin_layout/nav %>
+
+            <div class="col-sm-10">   
+
+                <div class="overview">
+                    <div class="overview-label col-sm-4" style="background: linear-gradient(to bottom, #ff33cc 7%, #6600ff 100%);">
+                        <img src="imgs/list.png" class="overview-label-icon col-sm-5" />
+                        <p class="label-content col-sm-7">
+                            <b>10</b>
+                            <br>
+                            Tong so hoa don
+                        </p>
+                    </div>
+                    <div class="overview-label col-sm-4" style="background: linear-gradient(to bottom, #ffff00 1%, #00cc00 100%);">
+                        <img src="imgs/list.png" class="overview-label-icon col-sm-5" />
+                        <p class="label-content col-sm-7">
+                            <b>10</b>
+                            <br>
+                            Tong so hoa don
+                        </p>
+                    </div>
+                    <div class="overview-label col-sm-4" style="background: linear-gradient(to bottom, #ffcc00 -4%, #ff5050 100%);">
+                        <img src="imgs/list.png" class="overview-label-icon col-sm-5" />
+                        <p class="label-content col-sm-7">
+                            <b>10</b>
+                            <br>
+                            Tong so hoa don
+                        </p>
+                    </div>
+                    <br style="clear: both"/>
+                </div>
+
+                <div class="row">
+                    <h1 class="table-title">Danh sách sản phẩm</h1>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Mã số</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <% products.forEach(function (p) { %>
+                            <tr>
+                                <td><%= p.id %></td>
+                                <td><%= p.name %></td>
+                                <td><%= p.unitprice %></td>
+                                <td><%= p.quantity %></td>
+                                <td>
+                                    <a href="#">Edit</a>
+                                </td>
+                                <td>
+                                    <a href="#">Delete</a>
+                                </td>
+                            </tr>
+                        <%
+                        }); %>
+                    </table>
+                </div>
+
+                <% include admin_layout/footer %>
+            </div>
+        </div>
+</BODY>
+</HTML>

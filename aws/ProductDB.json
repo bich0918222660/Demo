@@ -1,0 +1,24 @@
+[
+  {
+    "id": "SP001",
+    "name": "Váy cưới đính hoa vải",
+    "unitprice": 2200,
+    "discount": 0,
+    "quantity": 20,
+    "description": "Váy cưới đính hoa vải này là mẫu thịnh hành hiện nay, những bông hoa vải được ép và đính một cách tỉ mỉ giúp bộ váy trở nên sang trọng và giúp cho cô dâu trong ngày lễ cưới ngày càng xinh đẹp hơn.",
+    "category": "Váy cưới",
+    "status": 1,
+    "image": "16f005840fce52bc9a58f61597931565"
+  },
+  {
+    "id": "SP002",
+    "name": "Vest trắng lịch lãm",
+    "unitprice": 2200,
+    "discount": 0,
+    "quantity": 20,
+    "description": "Vest cưới nam màu trắng kết hợp với viền đen tạo điểm nhấn giúp cho người mặc bộ vest càng trở nên lịch lãm hơn. Bộ vest này mang phong cách thời thượng, trẻ trung lại mang tính phong độ của một người đàn ông.",
+    "category": "Vest cưới",
+    "status": 1,
+    "image": "16f005840fce52bc9a58f61597931565"
+  }
+]

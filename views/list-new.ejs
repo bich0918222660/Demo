@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<meta charset="UTF-8">
+	<title>List Page</title>
+	<meta name="author" content="Trieu Ngoc Bich">
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+
+	<!-- jQuery Validation -->
+	<script src="js/jquery.validate.min.js"></script>
+
+	<!-- jQuery UI -->
+	<link href="css/jquery-ui.min.css" rel="stylesheet" />
+	<script src="js/jquery-ui.min.js"></script>
+
+	<!-- Bootstrap -->
+    <link href="css/bootstrap3.min.css" rel="stylesheet" />
+	<script src="js/bootstrap3.min.js"></script>
+	
+	<style>
+    body {
+		font-size: 16px;
+	}
+	
+	/* header */
+	.h-info {
+		background-color: white;
+		color: black;
+		width: 100%;
+		height: 140px;
+	}
+	
+	.h-left {
+		width: 40%;
+		font-size: 35px;
+		font-weight: bold;
+		float: left;
+		margin-top: 15px;
+	}
+	
+	.h-logo {
+		height: 30%;
+		width: 60%;
+		margin-left: 18%;
+	}
+	
+	.h-right {
+		width: 60%;
+		float: right;
+		margin-top: 20px;
+	}
+	
+	.h-icon {
+		width: 20px;
+		height: 20px;
+		color: #ff1a75;
+		margin-left: 10px;		
+	}
+	
+	.h-show {
+		clear: both;
+	}
+	
+	.carousel-caption {
+		text-align: center;
+		color: #cc3399;
+		font-size: 20px;
+		font-weight: bold;
+	}	
+	
+	.carousel {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		position: relative;
+		z-index: -1;
+	}	
+
+    /* Navbar */	
+    .affix {
+		top: 0;
+		width: 100%;
+		z-index: 9999 !important;
+	}
+
+	.affix + .container-fluid {
+		padding-top: 70px;
+	}
+
+	.navbar {
+		background-color: white;
+		clear: both;
+		font-size: 18px;
+		height: 52px;
+        border-radius: 0px;
+        box-shadow: 0px 0px 2px #ccc;
+	}
+	
+	.navbar ul li a, .navbar-brand {
+		color: #8c8c8c;
+		font-weight: bold;
+	}
+	
+	.navbar ul li a:hover {
+		background-color: #ff3399;
+		color: white;
+	}
+	.navbar-brand:hover {
+		color: yellow;
+	}
+	.navbar .ic-cart {
+		color: #ff5050;
+	}
+	
+	/* info room */
+	.lg-item-active {
+		background-color: palevioletred;
+		color: white;
+		font-weight: bold;
+	}
+	
+	.s-box {
+		height: 300px;
+		width: 250px;
+		box-shadow: 0px 0px 2px rgb(63, 63, 63);
+		margin: 10px;
+		position: relative;
+		float: left;
+		border-radius: 10%;
+	}
+	
+	.s-box-img {
+		height: 300px;
+		width: 250px;
+		z-index: -1;
+		border-radius: 10%;
+	}
+	
+	.s-box .s-overlay {
+		position: absolute;
+		bottom: 100%;
+		left: 0;
+		right: 0;
+		background-color: black;
+		opacity: 0.6;
+		width: 100%;
+		height: 0;
+		transition: .5s ease;
+		border-radius: 10%;
+	}	
+	
+	.s-box-btn {
+		display: none;
+		text-decoration: none;
+		color: white;
+		font-size: 18px;
+		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		left: 50%;
+		top: 50%;
+		position: absolute;
+		text-align: center;
+		font-weight: bold;
+		font-size: 20px;
+	}
+	
+	.s-box:hover .s-overlay {
+		bottom: 0;
+		height: 100%;
+		border-radius: 10%;
+	}
+	
+	.s-box:hover .s-box-btn { display: block }
+	
+	.s-box-btn:hover {
+		color: #ff3399;
+		background-color: black;
+		text-decoration: none;
+	}
+	
+	.s-box-cont {
+		margin-top: -85px;
+		margin-left: 25px;
+		position: absolute;
+		font-weight: bold;
+		color: white;
+	}
+	
+	.s-box-cont h4 {
+		font-weight: bold;
+		color: yellow;
+	}
+	
+	
+	/* contact */
+	.s-contact {
+		background-color: #fff2f8;
+		color: #ff3399;
+		height: auto;
+		border-radius: 60% 0%;
+		box-shadow: 0px 0px 1px #ccc;
+	}
+	.s-contact-content {
+		width: 40%;
+		margin: auto;
+		padding-top: 2%;
+		padding-bottom: 2%;
+	}
+	
+	/* slideamin */
+	.slideanim {visibility:hidden;}
+	 .slide {
+		animation-name: slide;
+		-webkit-animation-name: slide;
+		animation-duration: 1s;
+		-webkit-animation-duration: 1s;
+		visibility: visible;
+	}
+	@keyframes slide {
+		0% {
+			opacity: 0;
+			transform: translateY(70%);
+		} 
+		100% {
+			opacity: 1;
+			transform: translateY(0%);
+		}
+	}
+	@-webkit-keyframes slide {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateY(70%);
+		} 
+		100% {
+			opacity: 1;
+			-webkit-transform: translateY(0%);
+		}
+	}
+	
+	/* footer */
+	footer {
+		background-color: black;
+		color: white;
+		padding: 2%;
+	}
+    </style>
+</HEAD>
+<body id="myPage">
+	<header>
+		<% include home_layout/header_top.ejs %>
+		<% include home_layout/slideshow.ejs %>
+    </header>
+	<% include home_layout/nav.ejs %>
+
+<section>
+		<div class="row" style="width: 90%; margin: auto">
+            <% include home_layout/left.ejs %>
+			<div class="col-xs-9 col-lg-9 col-sm-9">
+				<%	products.forEach(function (p) {
+				    if(p.status == 3) {
+					%>
+					<div class="s-box slideanim">
+						<img alt="image" src="<%= p.image %>" class="s-box-img">
+						<div class="s-overlay"><a href="/show/id=<%= p.product_id %>&name=<%= p.name %>" class="s-box-btn">Xem chi tiết</a></div>
+						<div class="s-box-cont">
+							<h4><%= p.name %></h4>
+							<p style="margin-left: 20px;">$ <%= p.price %></p>
+						</div>
+					</div>
+				<% }
+				}); %>
+				<br style="clear: both">
+			</div>
+		</div>
+		<br style="clear: both">
+		<br>
+		<br>
+    	<% include home_layout/contact.ejs %>
+	</section>
+	<hr>
+
+	<% include home_layout/footer.ejs %>
+
+	<script>
+		$(window).scroll(function() {
+		  $(".slideanim").each(function(){
+			var pos = $(this).offset().top;
+
+			var winTop = $(window).scrollTop();
+			if (pos < winTop + 600) {
+			  $(this).addClass("slide");
+			}
+		  });
+		});
+	</script>
+</body>
+</HTML>

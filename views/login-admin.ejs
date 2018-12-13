@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <meta name="author" content="Trieu Ngoc Bich">
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- jQuery Validation -->
+    <script src="js/jquery.validate.min.js"></script>
+
+    <!-- jQuery UI -->
+    <link href="css/jquery-ui.min.css" rel="stylesheet" />
+    <script src="js/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap3.min.css" rel="stylesheet" />
+    <script src="js/bootstrap3.min.js"></script>
+
+    <style>
+        body, html {height: 100%}
+        body {
+            background: url("imgs/bg_admin.jpeg");
+            min-height: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .cont {
+            min-height: 100%;
+            background-position: center;
+            background-size: cover;
+            background-color: #333333;
+            opacity: 0.7;
+            z-index: initial;
+
+        }
+
+        .btn {
+            padding: 6px 15px;
+            background-color: inherit;
+            border: 1px solid white;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+            margin-top: 5px;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: #ff0066;
+        }
+
+        .btn-menu {
+            margin-left: 3%;
+            margin-top: 2%;
+            width: 150px;
+        }
+
+        .btn-menu:hover {
+            background-color: black;
+            color: #ff0066;
+            opacity: 0.8;
+        }
+
+        .form {
+            width: 25%;
+            font-weight: bold;
+            color: white;
+            padding: 2% 4%;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            margin-top: -2%;
+            border: 2px solid white;
+            border-radius: 20px;
+        }
+
+        .info {
+            color: white;
+            /* margin-top: 25%;
+            margin-left: 3%; */
+            font-size: 20px;
+            line-height: 2;
+            position: absolute;
+            right: 3%;
+            bottom: 2%;
+            text-align: right;
+        }
+
+    </style>
+</HEAD>
+<body id="myPage">
+<div class="cont">
+    <div class="row">
+        <div class="btn btn-menu"><a href="/" style="text-decoration: none; color: white">HOME PAGE</a></div>
+    </div>
+    <div class="row">
+        <div class="form">
+            <h1 class="form-title">Login</h1>
+            <div class="form-inline" style="margin-top: 20px">
+                <form action="/login-admin" method="post">
+                    <div class="row">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="username" type="text" class="form-control" name="username" placeholder="Username"value="<%= username %>" >
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 12px">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="password" type="password" class="form-control" name="password" placeholder="Password" value="<%= password %>" >
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px; text-align: center">
+                        <input type="submit" value="Login" class="btn btn-default" />
+                    </div>
+                    <br/>
+                    <div class="row" style="margin-top: 10px; text-align: center; color: white;">
+                        <%= message %>
+                    </div>
+                </form>
+            </div></form>
+        </div>
+    </div>
+    <div class="info">
+        <b>Monday - Friday</b> 08 a.m - 18 p.m <br>
+        <b>Address:</b> 62/2 Điện Biên Phủ, Phường 17, Quận Bình Thạnh <br>
+        <b>Phone:</b> 0123 456 789 <br>
+        <b>Email:</b> unquewedding@gmail.com
+    </div>
+</div>
+</body>
+</HTML>

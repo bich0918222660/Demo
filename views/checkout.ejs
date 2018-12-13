@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<meta charset="UTF-8">
+	<title>Admin Page</title>
+	<meta name="author" content="Trieu Ngoc Bich">
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+
+	<!-- jQuery Validation -->
+	<script src="js/jquery.validate.min.js"></script>
+
+	<!-- jQuery UI -->
+	<link href="css/jquery-ui.min.css" rel="stylesheet" />
+	<script src="js/jquery-ui.min.js"></script>
+
+	<!-- Bootstrap -->
+    <link href="css/bootstrap3.min.css" rel="stylesheet" />
+	<script src="js/bootstrap3.min.js"></script>
+	
+	<style>
+    body {
+		font-size: 16px;
+	}
+	
+	/* header */
+	.h-info {
+		background-color: white;
+		color: black;
+		width: 100%;
+		height: 140px;
+	}
+	
+	.h-left {
+		width: 40%;
+		font-size: 35px;
+		font-weight: bold;
+		float: left;
+		margin-top: 15px;
+	}
+	
+	.h-logo {
+		height: 30%;
+		width: 60%;
+		margin-left: 18%;
+	}
+	
+	.h-right {
+		width: 60%;
+		float: right;
+		margin-top: 20px;
+	}
+	
+	.h-icon {
+		width: 20px;
+		height: 20px;
+		color: #ff1a75;
+		margin-left: 10px;		
+	}
+	
+	.h-show {
+		clear: both;
+	}
+	
+	.carousel-caption {
+		text-align: center;
+		color: #cc3399;
+		font-size: 20px;
+		font-weight: bold;
+	}	
+	
+	.carousel {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		position: relative;
+		z-index: -1;
+	}	
+
+    /* Navbar */	
+    .affix {
+		top: 0;
+		width: 100%;
+		z-index: 9999 !important;
+	}
+
+	.affix + .container-fluid {
+		padding-top: 70px;
+	}
+
+	.navbar {
+		background-color: white;
+		clear: both;
+		font-size: 18px;
+		height: 52px;
+        border-radius: 0px;
+        box-shadow: 0px 0px 2px #ccc;
+	}
+	
+	.navbar ul li a, .navbar-brand {
+		color: #8c8c8c;
+		font-weight: bold;
+	}
+	
+	.navbar ul li a:hover {
+		background-color: #ff3399;
+		color: white;
+	}
+	.navbar-brand:hover {
+		color: yellow;
+	}
+	.navbar .ic-cart {
+		color: #ff5050;
+	}
+	
+	/* cart */
+	table {
+		width: 90%;
+		margin: auto;
+	}
+
+	.form-title {
+		width: 40%;
+		font-size: 30px;
+		font-weight: bold;
+		margin: auto;
+		text-align: center;
+		padding: 10px;
+		margin-bottom: 10px;
+		border-top: 1px solid #ff0066;
+		border-bottom: 1px solid #ff0066;
+		margin-bottom: 40px;
+	}
+	.form-manage {
+		width: 80%;
+		margin: auto;
+	}
+	.lg-item-active {
+		background-color: palevioletred;
+		color: white;
+		font-weight: bold;
+	}
+	
+	/* contact */
+	.s-contact {
+		background-color: #fff2f8;
+		color: #ff3399;
+		height: auto;
+		border-radius: 60% 0%;
+		box-shadow: 0px 0px 1px #ccc;
+	}
+	.s-contact-content {
+		width: 40%;
+		margin: auto;
+		padding-top: 2%;
+		padding-bottom: 2%;
+	}
+	
+	/* slideamin */
+	.slideanim {visibility:hidden;}
+	 .slide {
+		animation-name: slide;
+		-webkit-animation-name: slide;
+		animation-duration: 1s;
+		-webkit-animation-duration: 1s;
+		visibility: visible;
+	}
+	@keyframes slide {
+		0% {
+			opacity: 0;
+			transform: translateY(70%);
+		} 
+		100% {
+			opacity: 1;
+			transform: translateY(0%);
+		}
+	}
+	@-webkit-keyframes slide {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateY(70%);
+		} 
+		100% {
+			opacity: 1;
+			-webkit-transform: translateY(0%);
+		}
+	}
+	
+	/* footer */
+	footer {
+		background-color: black;
+		color: white;
+		padding: 2%;
+	}
+    </style>
+</HEAD>
+<body id="myPage">
+	<header>
+        <% include home_layout/header_top.ejs %>
+        <% include home_layout/slideshow.ejs %>
+	</header>
+    <% include home_layout/nav.ejs %>
+<section>
+		<div class="row" style="width: 90%; margin: auto">
+            <% include home_layout/left.ejs %>
+			<div class="col-xs-9 col-lg-9 col-sm-9">
+
+				<br/>
+				<h2 class="form-title">Giỏ hàng</h2>
+				<table style="width: 80%; margin: auto"  class="table table-striped">
+					<tr>
+						<th>Tên sản phẩm</th>
+						<th>Đơn giá</th>
+						<th>Số lượng</th>
+						<th>Mức giảm</th>
+						<th>Tổng giá</th>
+					</tr>
+                    <%
+					var subtotal = 0;
+					cartItems.forEach(function (i) { %>
+					<tr>
+						<td><%= i.name %></td>
+						<td><%= i.price %></td>
+						<td><%= i.quantity %></td>
+						<td><%= i.discount %></td>
+						<td><%= i.price * i.quantity * (1 - i.discount) %></td>
+					</tr>
+                    <% subtotal += i.price * i.quantity * (1 - i.discount);
+					}) %>
+					<tr>
+						<td colspan="4" style="text-align: right; color: #ff0066">Tổng tiền: </td>
+						<td style="color: #ff0066"><%= subtotal %></td>
+					</tr>
+
+				</table>
+				<br/>
+				<hr>
+				<br>
+				<h2 class="form-title">Đặt hàng</h2>
+				<form action="/order" method="post" class="form-manage">
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label>Khách hàng</label>
+							<input type="text" name="customer" class="form-control" readonly="true" value="<%= customer %>" disabled >
+						</div>
+						<div class="form-group col-sm-6">
+							<label>Người nhận</label>
+							<input type="text" name="receiver" class="form-control" required >
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label>Ngày đặt hàng</label>
+							<%
+								var today = new Date();
+								var dd = today.getDate();
+								var mm = today.getMonth() + 1; //January is 0!
+
+								var yyyy = today.getFullYear();
+								if (dd < 10) {
+									dd = '0' + dd;
+								}
+								if (mm < 10) {
+									mm = '0' + mm;
+								}
+								var today = dd + '/' + mm + '/' + yyyy;
+							%>
+							<input class="input-group date form-control" name="orderDate" readonly="true" id="datepicker3" value="<%= today %>" />
+						</div>
+						<div class="form-group col-sm-6">
+							<label>Ngày nhận hàng</label>
+							<input class="input-group date form-control" readonly="true" name="receiveDate" id="datepicker4" required  />
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-12">
+							<label>Địa chỉ</label>
+							<input type="text" name="address" class="form-control" value="<%= address %>" required >
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-12" style="text-align: center">
+							<button class="btn btn-default">Đặt hàng</button>
+						</div>
+					</div><div class="row" style="color: red; text-align: center; text-size: 18px">
+						<%= message %>
+					</div>
+				</form>
+				<script type="text/javascript">
+                    $(document).ready(function() {
+
+                        var select = function() {
+                            var d1 = $('#datepicker3').datepicker('getDate');
+                            var d2 = $('#datepicker4').datepicker('getDate');
+                            var diff = 0;
+                            if (d1 && d2) {
+                                diff = Math.floor((d2.getTime() - d1.getTime()) / 86400000); // ms per day
+                            }
+                        }
+
+
+                        $("#datepicker3").datepicker({
+                            showMonthAfterYear: true,
+                            dateFormat: 'dd/mm/yy',
+                            numberOfMonths: 2,
+                            minDate: 0,
+                            onSelect: function(selected) {
+                                $("#datepicker4").datepicker("option", "minDate", selected);
+                                select();
+                            }
+                        });
+                        $("#datepicker4").datepicker({
+                            showMonthAfterYear: true,
+                            dateFormat: 'dd/mm/yy',
+                            numberOfMonths: 2,
+                            onSelect: function(selected) { //you have a syntax issue here the select method has to be called inside the default handler
+                                $("#datepicker3").datepicker("option", "maxDate", selected)
+                                select();
+                            }
+                        });
+                    });
+				</script>
+			</div>
+		</div>
+		<br style="clear: both">
+		<br>
+		<br>
+    <%include home_layout/contact.ejs %>
+	<hr>
+	<%include home_layout/footer.ejs %>
+	<script>
+		$(window).scroll(function() {
+		  $(".slideanim").each(function(){
+			var pos = $(this).offset().top;
+
+			var winTop = $(window).scrollTop();
+			if (pos < winTop + 600) {
+			  $(this).addClass("slide");
+			}
+		  });
+		});
+	</script>
+</body>
+</HTML>

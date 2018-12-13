@@ -1,0 +1,49 @@
+<div class="sidenav">
+        <div style="margin-left: 8%; color: white; text-size: 20px;">
+            <span class="dot"></span> <%= username %>
+        </div>
+        <a href="/" style="text-weight: bold; color: #ff0066;">Unique Wedding Store</a>
+
+        <button class="dropdown-btn">Sản phẩm <span class="caret"></span></button>
+        <div class="dropdown-container">
+            <a href="/add-product">Thêm mới</a>
+            <a href="/manage-product">Quản lý</a>
+        </div>
+
+        <button class="dropdown-btn">Nhân viên <span class="caret"></span></button>
+        <div class="dropdown-container">
+            <a href="/add-employee">Thêm mới</a>
+            <a href="/manage-employee">Quản lý</a>
+        </div>
+
+        <a href="/manage-order">Quản lý đơn đặt</a>
+        <a href="/manage-customer">Quản lý khách hàng</a>
+</div>
+<script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
+
+<style>
+    .dot {
+        height: 10px;
+        width: 10px;
+        background-color: #00cc00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 4%;
+    }
+</style>

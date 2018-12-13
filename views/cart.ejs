@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<meta charset="UTF-8">
+	<title>Admin Page</title>
+	<meta name="author" content="Trieu Ngoc Bich">
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+
+	<!-- jQuery Validation -->
+	<script src="js/jquery.validate.min.js"></script>
+
+	<!-- jQuery UI -->
+	<link href="css/jquery-ui.min.css" rel="stylesheet" />
+	<script src="js/jquery-ui.min.js"></script>
+
+	<!-- Bootstrap -->
+    <link href="css/bootstrap3.min.css" rel="stylesheet" />
+	<script src="js/bootstrap3.min.js"></script>
+	
+	<style>
+    body {
+		font-size: 16px;
+	}
+	
+	/* header */
+	.h-info {
+		background-color: white;
+		color: black;
+		width: 100%;
+		height: 140px;
+	}
+	
+	.h-left {
+		width: 40%;
+		font-size: 35px;
+		font-weight: bold;
+		float: left;
+		margin-top: 15px;
+	}
+	
+	.h-logo {
+		height: 30%;
+		width: 60%;
+		margin-left: 18%;
+	}
+	
+	.h-right {
+		width: 60%;
+		float: right;
+		margin-top: 20px;
+	}
+	
+	.h-icon {
+		width: 20px;
+		height: 20px;
+		color: #ff1a75;
+		margin-left: 10px;		
+	}
+	
+	.h-show {
+		clear: both;
+	}
+	
+	.carousel-caption {
+		text-align: center;
+		color: #cc3399;
+		font-size: 20px;
+		font-weight: bold;
+	}	
+	
+	.carousel {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		position: relative;
+		z-index: -1;
+	}	
+
+    /* Navbar */	
+    .affix {
+		top: 0;
+		width: 100%;
+		z-index: 9999 !important;
+	}
+
+	.affix + .container-fluid {
+		padding-top: 70px;
+	}
+
+	.navbar {
+		background-color: white;
+		clear: both;
+		font-size: 18px;
+		height: 52px;
+        border-radius: 0px;
+        box-shadow: 0px 0px 2px #ccc;
+	}
+	
+	.navbar ul li a, .navbar-brand {
+		color: #8c8c8c;
+		font-weight: bold;
+	}
+	
+	.navbar ul li a:hover {
+		background-color: #ff3399;
+		color: white;
+	}
+	.navbar-brand:hover {
+		color: yellow;
+	}
+	.navbar .ic-cart {
+		color: #ff5050;
+	}
+	
+	/* cart */
+	table {
+		width: 90%;
+		margin: auto;
+	}
+	.lg-item-active {
+		background-color: palevioletred;
+		color: white;
+		font-weight: bold;
+	}
+
+	.form-title {
+		width: 40%;
+		font-size: 30px;
+		font-weight: bold;
+		margin: auto;
+		text-align: center;
+		padding: 10px;
+		margin-bottom: 10px;
+		border-top: 1px solid #ff0066;
+		border-bottom: 1px solid #ff0066;
+		margin-bottom: 40px;
+	}
+	
+	/* contact */
+	.s-contact {
+		background-color: #fff2f8;
+		color: #ff3399;
+		height: auto;
+		border-radius: 60% 0%;
+		box-shadow: 0px 0px 1px #ccc;
+	}
+	.s-contact-content {
+		width: 40%;
+		margin: auto;
+		padding-top: 2%;
+		padding-bottom: 2%;
+	}
+	
+	/* slideamin */
+	.slideanim {visibility:hidden;}
+	 .slide {
+		animation-name: slide;
+		-webkit-animation-name: slide;
+		animation-duration: 1s;
+		-webkit-animation-duration: 1s;
+		visibility: visible;
+	}
+	@keyframes slide {
+		0% {
+			opacity: 0;
+			transform: translateY(70%);
+		} 
+		100% {
+			opacity: 1;
+			transform: translateY(0%);
+		}
+	}
+	@-webkit-keyframes slide {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateY(70%);
+		} 
+		100% {
+			opacity: 1;
+			-webkit-transform: translateY(0%);
+		}
+	}
+	
+	/* footer */
+	footer {
+		background-color: black;
+		color: white;
+		padding: 2%;
+	}
+    </style>
+</HEAD>
+<body id="myPage">
+	<header>
+        <% include home_layout/header_top.ejs %>
+        <% include home_layout/slideshow.ejs %>
+	</header>
+    <% include home_layout/nav.ejs %>
+<section>
+		<div class="row" style="width: 90%; margin: auto">
+            <% include home_layout/left.ejs %>
+			<div class="col-xs-9 col-lg-9 col-sm-9">
+				<br/>
+				<div class="form-title">Danh sách giỏ hàng</div>
+
+				<% if(cartItems.length > 0) { %>
+				<table class="table table-striped">
+					<tr>
+						<th>Ma san pham</th>
+						<th>Ten san pham</th>
+						<th>Don gia</th>
+						<th>Giam gia</th>
+						<th>So luong</th>
+						<th></th>
+						<th></th>
+					</tr>
+                    <% cartItems.forEach(function (i) { %>
+					<form action="/cart" method="post" >
+						<tr>
+							<td><%= i.id %>
+								<input type="hidden" name="id" id="id" value="<%= i.id %>">
+							</td>
+							<td><%= i.name %>
+								<input type="hidden" name="name" id="name" value="<%= i.name %>">
+							</td>
+							<td><%= i.price %></td>
+							<td><%= i.discount %></td>
+							<td>
+								<input value="<%= i.quantity %>" class="cart-qty" name="quantity"
+									   data-id="${p.id}" style="width: 50px;" type="number" min="1" max="4" required>
+
+							</td>
+							<td>
+								<button class="btn btn-default  btn-sm" ><span class="glyphicon glyphicon-ok"></span></button>
+							</td>
+					</form>
+					<td>
+						<button class="btn btn-default btn-sm" ><a onclick="return confirm('Bạn thực sự muốn xoá sản phẩm <%= i.id %>?')" style="text-decoration: none; color: black" href="/remove-by-id=<%= i.id %>"><span class="glyphicon glyphicon-trash"></span></a></button>
+					</td>
+					</tr>
+                    <%
+					}) %>
+				</table>
+				<div class="text-center">
+					<a href="/list" class="btn btn-default"> <span
+								class="glyphicon glyphicon-hand-left"></span> Tiếp tục xem sản phẩm
+					</a> <a href="/clear" class="btn btn-default"> <span
+								class="glyphicon glyphicon-refresh"></span> Huỷ giỏ hàng
+                        <% if(cartItems.length != 0) { %>
+					</a> <a href="/checkout" class="btn btn-default"> Đặt hàng
+						<span class="glyphicon glyphicon-hand-right"></span>
+                        <%
+						} else { %>
+                        <%
+						} %>
+					</a>
+				</div>
+				<% } else { %>
+				<h2 style="text-align: center; color: red; padding: 4%; text-size: 20px; text-weight: bold">Giỏ hàng hiện không có sản phẩm!</h2>
+				<div class="text-center">
+					<a href="/list" class="btn btn-default"> <span
+								class="glyphicon glyphicon-hand-left"></span> Xem sản phẩm
+					</a>
+				</div>
+                <%
+				} %>
+			</div>
+		</div>
+		<br style="clear: both">
+		<br>
+		<br>
+    <% include home_layout/contact.ejs %>
+	</section>
+	<hr>
+    <% include home_layout/footer.ejs %>
+	<script>
+		$(window).scroll(function() {
+		  $(".slideanim").each(function(){
+			var pos = $(this).offset().top;
+
+			var winTop = $(window).scrollTop();
+			if (pos < winTop + 600) {
+			  $(this).addClass("slide");
+			}
+		  });
+		});
+	</script>
+</body>
+</HTML>

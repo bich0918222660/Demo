@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<meta charset="UTF-8">
+	<title>List Page</title>
+	<meta name="author" content="Trieu Ngoc Bich">
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+
+	<!-- jQuery Validation -->
+	<script src="js/jquery.validate.min.js"></script>
+
+	<!-- jQuery UI -->
+	<link href="css/jquery-ui.min.css" rel="stylesheet" />
+	<script src="js/jquery-ui.min.js"></script>
+
+	<!-- Bootstrap -->
+    <link href="css/bootstrap3.min.css" rel="stylesheet" />
+	<script src="js/bootstrap3.min.js"></script>
+	
+	<style>
+    body {
+		font-size: 16px;
+	}
+	
+	/* header */
+	.h-info {
+		background-color: white;
+		color: black;
+		width: 100%;
+		height: 140px;
+	}
+	
+	.h-left {
+		width: 40%;
+		font-size: 35px;
+		font-weight: bold;
+		float: left;
+		margin-top: 15px;
+	}
+	
+	.h-logo {
+		height: 30%;
+		width: 60%;
+		margin-left: 18%;
+	}
+	
+	.h-right {
+		width: 60%;
+		float: right;
+		margin-top: 20px;
+	}
+	
+	.h-icon {
+		width: 20px;
+		height: 20px;
+		color: #ff1a75;
+		margin-left: 10px;		
+	}
+	
+	.h-show {
+		clear: both;
+	}
+	
+	.carousel-caption {
+		text-align: center;
+		color: #cc3399;
+		font-size: 20px;
+		font-weight: bold;
+	}	
+	
+	.carousel {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		position: relative;
+		z-index: -1;
+	}	
+
+    /* Navbar */	
+    .affix {
+		top: 0;
+		width: 100%;
+		z-index: 9999 !important;
+	}
+
+	.affix + .container-fluid {
+		padding-top: 70px;
+	}
+
+	.navbar {
+		background-color: white;
+		clear: both;
+		font-size: 18px;
+		height: 52px;
+        border-radius: 0px;
+        box-shadow: 0px 0px 2px #ccc;
+	}
+	
+	.navbar ul li a, .navbar-brand {
+		color: #8c8c8c;
+		font-weight: bold;
+	}
+	
+	.navbar ul li a:hover {
+		background-color: #ff3399;
+		color: white;
+	}
+	.navbar-brand:hover {
+		color: yellow;
+	}
+	.navbar .ic-cart {
+		color: #ff5050;
+	}
+	
+	/* info room */
+	.lg-item-active {
+		background-color: palevioletred;
+		color: white;
+		font-weight: bold;
+	}
+	
+	.s-box {
+		height: 300px;
+		width: 250px;
+		box-shadow: 0px 0px 2px rgb(63, 63, 63);
+		margin: 10px;
+		position: relative;
+		float: left;
+		border-radius: 10%;
+	}
+	
+	.s-box-img {
+		height: 300px;
+		width: 250px;
+		z-index: -1;
+		border-radius: 10%;
+	}
+	
+	.s-box .s-overlay {
+		position: absolute;
+		bottom: 100%;
+		left: 0;
+		right: 0;
+		background-color: black;
+		opacity: 0.6;
+		width: 100%;
+		height: 0;
+		transition: .5s ease;
+		border-radius: 10%;
+	}	
+	
+	.s-box-btn {
+		display: none;
+		text-decoration: none;
+		color: white;
+		font-size: 18px;
+		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		left: 50%;
+		top: 50%;
+		position: absolute;
+		text-align: center;
+		font-weight: bold;
+		font-size: 20px;
+	}
+	
+	.s-box:hover .s-overlay {
+		bottom: 0;
+		height: 100%;
+		border-radius: 10%;
+	}
+	
+	.s-box:hover .s-box-btn { display: block }
+	
+	.s-box-btn:hover {
+		color: #ff3399;
+		background-color: black;
+		text-decoration: none;
+	}
+	
+	.s-box-cont {
+		margin-top: -85px;
+		margin-left: 25px;
+		position: absolute;
+		font-weight: bold;
+		color: white;
+	}
+	
+	.s-box-cont h4 {
+		font-weight: bold;
+		color: yellow;
+	}
+	
+	
+	/* contact */
+	.s-contact {
+		background-color: #fff2f8;
+		color: #ff3399;
+		height: auto;
+		border-radius: 60% 0%;
+		box-shadow: 0px 0px 1px #ccc;
+	}
+	.s-contact-content {
+		width: 40%;
+		margin: auto;
+		padding-top: 2%;
+		padding-bottom: 2%;
+	}
+
+	#page_navigation a {
+		padding: 8px 12px;
+		border: 1px solid inherit;
+		margin: 3px;
+		font-size: 16px;
+		color: black;
+		text-decoration: none;
+		border-radius: 5px;
+	}
+
+	#page_navigation a:hover {
+		background: #e6e6e6;
+	}
+
+	.active_page {
+		background: #ff3333;
+		color: white !important;
+	}
+	
+	/* slideamin */
+	.slideanim {visibility:hidden;}
+	 .slide {
+		animation-name: slide;
+		-webkit-animation-name: slide;
+		animation-duration: 1s;
+		-webkit-animation-duration: 1s;
+		visibility: visible;
+	}
+	@keyframes slide {
+		0% {
+			opacity: 0;
+			transform: translateY(70%);
+		} 
+		100% {
+			opacity: 1;
+			transform: translateY(0%);
+		}
+	}
+	@-webkit-keyframes slide {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateY(70%);
+		} 
+		100% {
+			opacity: 1;
+			-webkit-transform: translateY(0%);
+		}
+	}
+	
+	/* footer */
+	footer {
+		background-color: black;
+		color: white;
+		padding: 2%;
+	}
+    </style>
+</HEAD>
+<body id="myPage">
+	<header>
+		<% include home_layout/header_top.ejs %>
+		<% include home_layout/slideshow.ejs %>
+    </header>
+	<% include home_layout/nav.ejs %>
+
+<section>
+		<div class="row" style="width: 90%; margin: auto">
+            <% include home_layout/left.ejs %>
+
+			<div class="col-xs-9 col-lg-9 col-sm-9">
+				<input type="hidden" id="current_page" />
+				<input type="hidden" id="show_per_page" />
+				<div id="content">
+                    <%	products.forEach(function (p) {
+                    %>
+					<div class="s-box slideanim">
+						<img alt="image" src="<%= p.image %>" class="s-box-img">
+						<div class="s-overlay"><a href="/show/id=<%= p.product_id %>&name=<%= p.name %>" class="s-box-btn">Xem chi tiết</a></div>
+						<div class="s-box-cont">
+							<h4><%= p.name %></h4>
+							<p style="margin-left: 20px;">$ <%= p.price %></p>
+						</div>
+					</div>
+                    <%
+					}); %>
+					<br style="clear: both">
+				</div>
+				<br><br>
+				<div class="row" style="clear: both; text-align: center">
+					<div id="page_navigation" style="margin: 20px; text-align: center"></div>
+				</div>
+			</div>
+		</div>
+
+	<script type='text/javascript'>
+        //<![CDATA[
+        $(document)
+            .ready(
+                function() {
+
+                    //how much items per page to show
+                    var show_per_page = 6;
+                    //getting the amount of elements inside content div
+                    var number_of_items = $('#content').children().size();
+                    //calculate the number of pages we are going to have
+                    var number_of_pages = Math.ceil(number_of_items
+                        / show_per_page);
+
+                    //set the value of our hidden input fields
+                    $('#current_page').val(0);
+                    $('#show_per_page').val(show_per_page);
+
+                    //now when we got all we need for the navigation let's make it '
+
+                    /*
+                    what are we going to have in the navigation?
+                        - link to previous page
+                        - links to specific pages
+                        - link to next page
+                     */
+                    var navigation_html = '<a class="previous_link" href="javascript:previous();">«</a>';
+
+                    var current_link = 0;
+                    while (number_of_pages > current_link) {
+                        navigation_html += '<a class="page_link" href="javascript:go_to_page('
+                            + current_link
+                            + ')" longdesc="'
+                            + current_link
+                            + '">'
+                            + (current_link + 1)
+                            + '</a>';
+                        current_link++;
+                    }
+
+                    navigation_html += '<a class="next_link" href="javascript:next();">»</a>';
+
+                    $('#page_navigation').html(navigation_html);
+
+                    //add active_page class to the first page link
+                    $('#page_navigation .page_link:first').addClass(
+                        'active_page');
+
+                    //hide all the elements inside content div
+                    $('#content').children().css('display', 'none');
+
+                    //and show the first n (show_per_page) elements
+                    $('#content').children().slice(0, show_per_page).css(
+                        'display', 'block');
+
+                });
+
+        function previous() {
+
+            new_page = parseInt($('#current_page').val()) - 1;
+            //if there is an item before the current active link run the function
+            if ($('.active_page').prev('.page_link').length == true) {
+                go_to_page(new_page);
+            }
+
+        }
+
+        function next() {
+            new_page = parseInt($('#current_page').val()) + 1;
+            //if there is an item after the current active link run the function
+            if ($('.active_page').next('.page_link').length == true) {
+                go_to_page(new_page);
+            }
+
+        }
+        function go_to_page(page_num) {
+            //get the number of items shown per page
+            var show_per_page = parseInt($('#show_per_page').val());
+
+            //get the element number where to start the slice from
+            start_from = page_num * show_per_page;
+
+            //get the element number where to end the slice
+            end_on = start_from + show_per_page;
+
+            //hide all children elements of content div, get specific items and show them
+            $('#content').children().css('display', 'none').slice(start_from,
+                end_on).css('display', 'block');
+
+            /*get the page link that has longdesc attribute of the current page and add active_page class to it
+            and remove that class from previously active page link*/
+            $('.page_link[longdesc=' + page_num + ']').addClass('active_page')
+                .siblings('.active_page').removeClass('active_page');
+
+            //update the current page input field
+            $('#current_page').val(page_num);
+        }
+        //]]>
+	</script>
+		<br>
+		<br>
+    	<% include home_layout/contact.ejs %>
+	</section>
+	<hr>
+
+	<% include home_layout/footer.ejs %>
+
+	<script>
+		$(window).scroll(function() {
+		  $(".slideanim").each(function(){
+			var pos = $(this).offset().top;
+
+			var winTop = $(window).scrollTop();
+			if (pos < winTop + 600) {
+			  $(this).addClass("slide");
+			}
+		  });
+		});
+	</script>
+</body>
+</HTML>
